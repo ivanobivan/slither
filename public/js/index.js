@@ -141,7 +141,6 @@ export default class Slither {
         };
         this.stop = () => {
             this.isRunning = false;
-            location.reload();
         };
         /*Создаем canvas-элемент*/
         this.context = this.makeCanvasContext();
@@ -155,6 +154,8 @@ export default class Slither {
         this.drawFood();
         /*Рисуем элемент змейка*/
         this.drawSlither();
+        /*Запускаем*/
+        this.start();
     }
     /*Основной анимирующий метод, перерисовывает сетку в зависимости от скорости анимации*/
     animate(timestamp) {
