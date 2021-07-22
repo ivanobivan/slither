@@ -1,55 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Slither</title>
     <link rel="stylesheet" href="./css/index.css">
+    <title>Slither</title>
 </head>
+
 <body>
 <main>
     <header>
-        <button type="button" id="start">start</button>
-        <button type="button" id="stop">stop</button>
-        <div id="score">Score: <span>0</span></div>
+        <div>Score: <span id="score">0</span></div>
     </header>
-    <section id="slither">
+    <canvas></canvas>
+    <script type="module">
+        import Slither from "./js/index.js";
 
-    </section>
-</main>
-<script type="module">
-    import Slither from "./js/index.js";
-
-    const slither = new Slither();
-
-    const start = document.querySelector("#start");
-    start.addEventListener("click", () => {
+        const body = document.body;
+        body.addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case "ArrowLeft":
+                    slither.changeDirection("left");
+                    break;
+                case "ArrowRight":
+                    slither.changeDirection("right");
+                    break;
+                case "ArrowUp":
+                    slither.changeDirection("up");
+                    break;
+                case "ArrowDown":
+                    slither.changeDirection("down");
+                    break;
+            }
+        });
+        const slither = new Slither();
         slither.start();
-    });
+    </script>
 
-    const stop = document.querySelector("#stop");
-    stop.addEventListener("click", () => {
-        slither.stop();
-    });
+</main>
 
-    const body = document.body;
-    body.addEventListener("keydown", (event) => {
-        switch (event.key) {
-            case "ArrowLeft":
-                slither.changeDirection("left");
-                break;
-            case "ArrowRight":
-                slither.changeDirection("right");
-                break;
-            case "ArrowUp":
-                slither.changeDirection("up");
-                break;
-            case "ArrowDown":
-                slither.changeDirection("down");
-                break;
-        }
-    });
-</script>
 </body>
 </html>
