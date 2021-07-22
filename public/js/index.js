@@ -2,7 +2,7 @@ export default class Slither {
     constructor() {
         this.score = 0;
         this.size = Slither.DEFAULT_SLITHER_SIZE;
-        this.direction = Slither.DEFAULT_DIRECTION;
+        this.directions = [Slither.DEFAULT_DIRECTION];
         this.isRunning = false;
         this.headPosition = Slither.DEFAULT_SNAKE_POSITION;
         this.tail = [];
@@ -62,8 +62,9 @@ export default class Slither {
         };
         /*метод пересчета координат*/
         this.getNextSlitherPosition = () => {
+            const direction = this.directions.length > 1 ? this.directions.splice(0, 1)[0] : this.directions[0];
             const head = this.headPosition;
-            switch (this.direction) {
+            switch (direction) {
                 case 'up':
                     return { x: head.x, y: head.y - 1 };
                 case 'down':
@@ -116,19 +117,20 @@ export default class Slither {
         * Есть проверка для смены направления на противоположное, чтобы не вызвать коллизию с самим собой
         */
         this.changeDirection = (newDirection) => {
-            if (this.direction === "up" && newDirection === "down") {
+            const lastDirection = this.directions[this.directions.length - 1];
+            if (lastDirection === 'up' && (newDirection === 'down' || newDirection === 'up')) {
                 return;
             }
-            if (this.direction === "down" && newDirection === "up") {
+            if (lastDirection == 'down' && (newDirection === 'up' || newDirection === 'down')) {
                 return;
             }
-            if (this.direction === "left" && newDirection === "right") {
+            if (lastDirection == 'left' && (newDirection === 'right' || newDirection === 'left')) {
                 return;
             }
-            if (this.direction === "right" && newDirection === "left") {
+            if (lastDirection == 'right' && (newDirection === 'left' || newDirection === 'right')) {
                 return;
             }
-            this.direction = newDirection;
+            this.directions.push(newDirection);
         };
         this.start = () => {
             if (this.isRunning) {
@@ -193,4 +195,4 @@ Slither.SCORE_STEP = 1;
 Slither.DEFAULT_SNAKE_POSITION = { x: 3, y: 1 };
 Slither.DEFAULT_DIRECTION = "right";
 Slither.DEFAULT_SLITHER_SIZE = 3;
-Slither.SPEED = 50;
+Slither.SPEED = 100;
