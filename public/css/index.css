@@ -26,8 +26,16 @@ main header {
     height: 40px;
     width: 100%;
     background-color: white;
+    display: flex;
+    gap: 5px;
 }
-
+main header button {
+    padding: 0 10px;
+    border: 1px solid  rgba(0,0,0,0.2);
+    border-radius: 2px;
+    background-color: white;
+    color: black;
+}
 
 main canvas {
     display: block;
