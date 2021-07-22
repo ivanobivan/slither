@@ -9,13 +9,13 @@ export default class Slither {
     private static GRID_X_ELEMENTS = Slither.GRID_WIDTH / Slither.BLOCK_SIZE;
     private static SCORE_STEP = 1;
     private static DEFAULT_SNAKE_POSITION = {x: 3, y: 1};
-    private static DEFAULT_DIRECTION = "right";
+    private static DEFAULT_DIRECTION: direction = "right";
     private static DEFAULT_SLITHER_SIZE = 3;
-    private static SPEED = 50;
+    private static SPEED = 100;
 
     private score = 0;
     private size = Slither.DEFAULT_SLITHER_SIZE;
-    private direction = Slither.DEFAULT_DIRECTION;
+    private directions: direction[] = [Slither.DEFAULT_DIRECTION];
     private context: CanvasRenderingContext2D;
     private isRunning = false;
     private headPosition = Slither.DEFAULT_SNAKE_POSITION;
@@ -117,8 +117,9 @@ export default class Slither {
 
     /*метод пересчета координат*/
     private getNextSlitherPosition = () => {
+        const direction = this.directions.length > 1 ? this.directions.splice(0, 1)[0] : this.directions[0];
         const head = this.headPosition;
-        switch (this.direction) {
+        switch (direction) {
             case 'up':
                 return {x: head.x, y: head.y - 1};
             case 'down':
@@ -209,19 +210,20 @@ export default class Slither {
     * Есть проверка для смены направления на противоположное, чтобы не вызвать коллизию с самим собой
     */
     public changeDirection = (newDirection: direction) => {
-        if (this.direction === "up" && newDirection === "down") {
-            return
-        }
-        if (this.direction === "down" && newDirection === "up") {
+        const lastDirection = this.directions[this.directions.length - 1];
+        if (lastDirection === 'up' && (newDirection === 'down' || newDirection === 'up')) {
             return;
         }
-        if (this.direction === "left" && newDirection === "right") {
+        if (lastDirection == 'down' && (newDirection === 'up' || newDirection === 'down')) {
             return;
         }
-        if (this.direction === "right" && newDirection === "left") {
+        if (lastDirection == 'left' && (newDirection === 'right' || newDirection === 'left')) {
             return;
         }
-        this.direction = newDirection;
+        if (lastDirection == 'right' && (newDirection === 'left' || newDirection === 'right')) {
+            return;
+        }
+        this.directions.push(newDirection);
     }
 
     public start = () => {
