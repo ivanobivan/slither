@@ -1,3 +1,7 @@
+:root {
+    --base-border-color: rgba(0, 0, 0, 0.2);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,63 +11,25 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background-color: black;
     display: flex;
+    background-color: black;
 }
 
 main {
-    height: 440px;
-    width: 600px;
-    background-color: white;
     margin: auto;
+    height: 640px;
+    width: 600px;
 }
 
 main header {
+    padding: 10px;
     height: 40px;
     width: 100%;
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    border-bottom: 1px dotted black;
-}
-main section {
-    height: 400px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(8, 1fr);
-    gap: 0;
+    background-color: white;
 }
 
-main section .y {
-    border-bottom: 1px dotted black;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 1fr;
-}
-main section .y .x {
-    border-right: 1px dotted black;
+
+main canvas {
+    display: block;
 }
 
-main section .y .x:last-child {
-    border-right: none;
-}
-
-main section .y .x.head {
-    background-color: black;
-}
-
-main section .y .x.food {
-    position: relative;
-}
-
-main section .y .x.food::before {
-    position: absolute;
-    content: "";
-    left: 5px;
-    top: 5px;
-    border: 1px solid black;
-    width: calc(100% - 12px);
-    height: calc(100% - 12px);
-    border-radius: 5px;
-}
