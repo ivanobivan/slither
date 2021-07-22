@@ -9,6 +9,8 @@
 <body>
 <main>
     <header>
+        <button type="button" id="start">start</button>
+        <button type="button" id="stop">stop</button>
         <div>Score: <span id="score">0</span></div>
     </header>
     <canvas></canvas>
@@ -33,7 +35,16 @@
             }
         });
         const slither = new Slither();
-        slither.start();
+
+        const start = document.querySelector("#start");
+        start.addEventListener("click", () => {
+            slither.start();
+        });
+
+        const stop = document.querySelector("#stop");
+        stop.addEventListener("click", () => {
+            slither.stop();
+        })
     </script>
 
 </main>
