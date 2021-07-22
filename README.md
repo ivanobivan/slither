@@ -1,10 +1,2 @@
-# Slither
-
-#### Особенности
-1. Простое приложение, интуитивно напоминающее змейку, без использования canvas-анимации
-2. Вся анимация построена на js
-3. Есть демо на vercel, также можно просто склонить и локально открыть index.html из папки public и посмотреть на работу в браузере
-4. Запускается нажатием на кнопку start
-5. Весь прототип приложения находится в файле prototype.txt
-
-[Демо](https://slither-ivanobivan.vercel.app/)
+# [Slither](https://slither-ivanobivan.vercel.app/)
+# [Демо](https://slither-ivanobivan.vercel.app/)
