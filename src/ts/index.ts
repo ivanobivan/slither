@@ -42,6 +42,9 @@ export default class Slither {
 
         /*Рисуем элемент змейка*/
         this.drawSlither();
+
+        /*Запускаем*/
+        this.start();
     }
 
     private makeCanvasContext = (): CanvasRenderingContext2D => {
@@ -236,6 +239,5 @@ export default class Slither {
 
     public stop = () => {
         this.isRunning = false;
-        location.reload()
     }
 }
