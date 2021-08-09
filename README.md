@@ -1,2 +1,2 @@
 # Slither
-## [Демо](https://slither-ivanobivan.vercel.app/)
+## [Demo](https://slither-ivanobivan.vercel.app/)
